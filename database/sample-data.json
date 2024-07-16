@@ -1,0 +1,52 @@
+[
+    {
+        "_id": 1,
+        "info": "Aswin K O",
+        "description": "Masters from SJCET Palai, Experienced Software Developer."
+    },
+    {
+        "_id": 2,
+        "info": "Education", 
+        "description": "Masters of Computer Application from SJCET Palai."
+    },
+    {
+        "_id": 3,
+        "info": "Instagram", 
+        "description": "@__thephantom_"
+    },
+    {
+        "_id": 4,
+        "info": "Linkedin", 
+        "description": "@aswinko"
+    },
+    {
+        "_id": 5,
+        "info": "Facebook", 
+        "description": ""
+    },
+    {
+        "_id": 6,
+        "info": "Personal Project", 
+        "description": "Made a E-Commerce Application, using Nextjs"
+    },
+    {
+        "_id": 7,
+        "info": "", 
+        "description": ""
+    },
+    {
+        "_id": 8,
+        "info": "", 
+        "description": ""
+    },
+    {
+        "_id": 9,
+        "info": "", 
+        "description": ""
+    },
+    {
+        "_id": 10,
+        "info": "", 
+        "description": ""
+    }
+]
