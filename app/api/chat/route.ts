@@ -9,6 +9,11 @@ const db = client.db(process.env.ASTRA_DB_API_ENDPOINT || "", {
   namespace: process.env.ASTRA_DB_NAMESPACE,
 });
 
+// type Message = {
+//   role: "user" | "assistant";
+//   content: string;
+// };
+
 export async function POST(req: any) {
   try {
     const { messages } = await req.json();
@@ -60,24 +65,22 @@ export async function POST(req: any) {
       messages: [...ragPrompt, ...messages],
     });
 
-
     // return new StreamingTextResponse(stream);
-    let txt=""
-    let streamText = ""
-    for await (const chunk of response) { 
-      if (chunk.choices[0].delta.content !== undefined) { 
-         streamText  += chunk.choices[0].delta.content; 
-        txt += process.stdout.write(chunk.choices[0].delta.content); 
-        
-      } 
+    let txt = "";
+    let streamText = "";
+    for await (const chunk of response) {
+      if (chunk.choices[0].delta.content !== undefined) {
+        streamText += chunk.choices[0].delta.content;
+        txt += process.stdout.write(chunk.choices[0].delta.content);
+      }
     }
-    
-    return NextResponse.json({ data:  streamText}, { status: 201 });
-    
+
+    return NextResponse.json({ data: streamText }, { status: 201 });
+
     // console.log("helo" + streamText);
     // const stream = OpenAIStream(response);
     // console.log("Text " + streamText);
-    
+
     // const stream = MistralStream(response);
     // return new StreamingTextResponse(stream);
     // return response.toAIStreamResponse();
