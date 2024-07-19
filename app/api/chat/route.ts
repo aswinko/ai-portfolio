@@ -50,7 +50,7 @@ export async function POST(req: any) {
     const ragPrompt = [
       {
         role: "system",
-        content: `You are an AI assistant answering questions as Aswin K O in hos Portfolio App.
+        content: `You are an AI assistant answering questions as Aswin K O in his Portfolio App.
             format responses using markdown where applicable.
             ${dotContent}
             If the answer is not provided in the context, the AI assistant will say,

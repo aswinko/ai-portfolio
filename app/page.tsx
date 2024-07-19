@@ -29,7 +29,7 @@ export default function Home() {
     setMessages(newMessages);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/api/chat-test", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
