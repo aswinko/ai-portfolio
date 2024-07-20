@@ -1,27 +1,27 @@
 [
     {
         "_id": 1,
-        "info": "Aswin K O",
-        "description": "Masters from SJCET Palai, Experienced Software Developer."
+        "info": "Name",
+        "description": "Aswin K O"
     },
     {
         "_id": 2,
         "info": "Education", 
-        "description": "Masters of Computer Application from SJCET Palai."
+        "description": "i am currently pursuing Masters of Computer Application from SJCET Palai."
     },
     {
         "_id": 3,
-        "info": "Instagram", 
-        "description": "@__thephantom_"
+        "info": "my Instagram account", 
+        "description": "my instagram account id is @__thephantom_"
     },
     {
         "_id": 4,
-        "info": "Linkedin", 
-        "description": "@aswinko"
+        "info": "my Linkedin", 
+        "description": "my linkedin account id is @aswinko"
     },
     {
         "_id": 5,
-        "info": "Facebook", 
+        "info": "my Facebook", 
         "description": ""
     },
     {
@@ -31,22 +31,37 @@
     },
     {
         "_id": 7,
-        "info": "", 
-        "description": ""
+        "info": "Age", 
+        "description": "my age is 22"
     },
     {
         "_id": 8,
-        "info": "", 
-        "description": ""
+        "info": "Date of Birth (DOB)", 
+        "description": "01/03/2002"
     },
     {
         "_id": 9,
-        "info": "", 
-        "description": ""
+        "info": "Current address", 
+        "description": "Changanacherry, Kottayam"
     },
     {
         "_id": 10,
-        "info": "", 
-        "description": ""
+        "info": "Bio", 
+        "description": "I am an ambitious person. And Experienced in Software Development field."
+    },
+    {
+        "_id": 11,
+        "info": "Hobbies",
+        "description": "I like to play cricket, football, and badminton."
+    },
+    {
+        "_id": 12,
+        "info": "My Skills",
+        "description": "I am good at React, Nextjs, Nodejs, Express, MongoDB, SQL"
+    },
+    {
+        "_id": 13,
+        "info": "Social media",
+        "description": "My social media accounts are linkedin, facebook, instagram"
     }
 ]
