@@ -31,7 +31,7 @@ const splitter = new RecursiveCharacterTextSplitter({
 
 export const createCollection = async () => {
     try {
-        await db.createCollection("portfolio", {
+        await db.createCollection("portfolio_ok", {
             vector: {
                 metric: 'cosine',
                 service: {
@@ -54,7 +54,7 @@ export const createCollection = async () => {
 }
 
 export const loadData = async () => {
-    const collection = await db.collection("portfolio")
+    const collection = await db.collection("portfolio_ok")
     for await (const {_id, info, description} of sampleData) {
         const chunks = await splitter.splitText(description);
         let i = 0;

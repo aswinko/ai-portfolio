@@ -11,10 +11,6 @@ const db = client.db(process.env.ASTRA_DB_API_ENDPOINT || "", {
   namespace: process.env.ASTRA_DB_NAMESPACE,
 });
 
-// type Message = {
-//   role: "user" | "assistant";
-//   content: string;
-// };
 
 export async function POST(req: any) {
   try {
@@ -24,51 +20,12 @@ export async function POST(req: any) {
 
     let dotContent = "";
 
-    // const { data } = await mistral.embeddings({
-    //   input: latestMessage,
-    //   model: "mistral-embed",
-    // });
 
     const data = await hf.featureExtraction({
       model: "sentence-transformers/all-MiniLM-L6-v2",
       inputs: latestMessage,
     });
 
-    //   const {data}:any = res;
-
-    // console.log("API - " + data);
-
-    // if (!data || !data.length) {
-    //   throw new Error("No embeddings returned");
-    // }
-
-    // const parsedEmbedding = embedding.toString().split(',').map(Number);
-
-    // // Normalize the embedding
-    // const min = Math.min(...parsedEmbedding);
-    // const max = Math.max(...parsedEmbedding);
-    // const normalizedEmbedding = parsedEmbedding.map(
-    //   (value) => (value - min) / (max - min)
-    // );
-
-    // // Interpolate to the new desired length
-    // const interpolate = (arr, newLen) => {
-    //   const factor = (arr.length - 1) / (newLen - 1);
-    //   return Array.from({ length: newLen }, (_, i) => {
-    //     const index = i * factor;
-    //     const lower = Math.floor(index);
-    //     const upper = Math.ceil(index);
-    //     if (lower === upper) {
-    //       return arr[lower];
-    //     }
-    //     return arr[lower] + (arr[upper] - arr[lower]) * (index - lower);
-    //   });
-    // };
-
-    // let newLength=5;
-    // const newEmbedding = interpolate(normalizedEmbedding, newLength= parseInt(newLength, 10));
-
-    // console.log(newEmbedding);
 
     let embedding: number[] = [];
 
@@ -80,26 +37,14 @@ export async function POST(req: any) {
     }
 
 
-    // // Log the dimension of the embedding for debugging
-    // console.log("Embedding dimension:", embedding.length);
-
-    // // Verify that the embedding dimension matches the expected dimension
-    // const expectedDimension = 384; // Replace with the actual dimension used in your Astra DB collection
-    // if (embedding.length !== expectedDimension) {
-    //   console.error(`Embedding dimension mismatch: expected ${expectedDimension}, got ${embedding.length}`);
-    //   return NextResponse.json({ error: "Embedding dimension mismatch" }, { status: 400 });
-    // }
-
-
-
-    const collection = await db.collection("portfolio");
+    const collection = await db.collection("portfolio_ok");
 
     // Perform a similarity search
     const cursor = await collection.find(
       {},
       {
         sort: { $vector: embedding }, // Sort by similarity
-        limit: 5,
+        limit: 10,
         includeSimilarity: true,
       }
     );
@@ -116,7 +61,7 @@ export async function POST(req: any) {
   const ragPrompt = [
     {
       role: "system",
-      content: `You are an AI assistant in Aswin K O's Portfolio App. Answer the user's questions based on the provided context. Use markdown formatting where appropriate.
+      content: `You are an Aswin K O. Answer the user's questions based solely on the provided context. Respond only to the specific question asked by the user. Use markdown formatting where appropriate.
   
       Context:
       ${dotContent}
@@ -125,31 +70,17 @@ export async function POST(req: any) {
     },
   ];
 
-    // const response = await mistral.chatStream({
-    //   model: "mistral-tiny",
-    //   // stream: true,
-    //   // max_tokens: 1000,
-    //   messages: [...ragPrompt, ...messages],
-    // });
 
-    // // return new StreamingTextResponse(stream);
-    // let txt = "";
-    // let streamText = "";
-    // for await (const chunk of response) {
-    //   if (chunk.choices[0].delta.content !== undefined) {
-    //     streamText += chunk.choices[0].delta.content;
-    //     txt += process.stdout.write(chunk.choices[0].delta.content);
-    //   }
-    // }
-
-    // Streaming API
+    //Streaming API
     let out = "";
     for await (const chunk of hf.chatCompletionStream({
       model: "mistralai/Mistral-7B-Instruct-v0.2",
       messages: [...ragPrompt, ...messages],
-      max_tokens: 100,
-      temperature: 0.1,
+      max_tokens: 200,
+      temperature: 0.2,
       seed: 0,
+      stream: true,
+      n: 1,
     })) {
       if (chunk.choices && chunk.choices.length > 0) {
         out += chunk.choices[0].delta.content;
@@ -158,6 +89,7 @@ export async function POST(req: any) {
     }
 
     return NextResponse.json({ data: out }, { status: 201 });
+
   } catch (error) {
     throw error;
   }
