@@ -132,7 +132,7 @@ export default function Home() {
         <h1 className="text-xl md:text-5xl px-2 font-bold text-white font-serif mt-10">
           Aswin K O&rsquo;s Portfolio
         </h1>
-        <section className="w-full flex-1 flex-col overflow-y-scroll overflow-x-hidden px-64 rounded-sm">
+        <section className="w-full flex-1 flex-col overflow-y-scroll overflow-x-hidden md:px-64 rounded-sm">
           {state.messages.length === 0 ? (
             <p className="text-center text-xl">Ask me anything?</p>
           ) : (
