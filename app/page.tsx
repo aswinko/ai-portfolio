@@ -150,7 +150,7 @@ src="/images/bg_img.jpg"
         <h1 className="text-xl md:text-5xl px-2 font-bold text-black dark:text-white font-serif mt-10">
           Chat with <span className="text-[#F9D689]">Aswin K O</span>
         </h1>
-        <section className="w-full flex-1 flex-col bg-white overflow-y-scroll overflow-x-hidden no-scrollbar border border-black dark:border-slate-700 p-1 md:p-4 rounded-xl shadow-2xl inset-0 dark:bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
+        <section className=" w-full flex-1 flex-col bg-white overflow-y-scroll overflow-x-hidden no-scrollbar border border-black dark:border-slate-700 p-1 md:p-4 rounded-xl shadow-2xl inset-0 dark:bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
           {state.messages.length === 0 ? (
             <p className="text-center text-xl text-black dark:text-white">
               Ask me anything?
@@ -202,7 +202,7 @@ src="/images/bg_img.jpg"
           </button>
         </form>
       </div>
-      <footer className="text-sm w-full absolute bottom-0 text-center text-zinc-950 font-bold dark:text-white">
+      <footer className="pt-4 text-sm flex items-center justify-center text-zinc-950 font-bold dark:text-white">
         © 2024 <span className="text-zinc-950 dark:text-gray-400">Aswin K O</span>{" "}
         All Rights Reserved.
       </footer>
