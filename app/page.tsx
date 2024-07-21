@@ -1,8 +1,8 @@
-
 "use client";
 
 import { useReducer } from "react";
 import Image from "next/image";
+import ThemeTabs from "@/components/ThemeTabs";
 
 type Message = {
   role: "user" | "assistant";
@@ -36,12 +36,18 @@ const reducer = (state: State, action: Action): State => {
     case "ADD_USER_MESSAGE":
       return {
         ...state,
-        messages: [...state.messages, { role: "user", content: action.payload }],
+        messages: [
+          ...state.messages,
+          { role: "user", content: action.payload },
+        ],
       };
     case "ADD_ASSISTANT_MESSAGE":
       return {
         ...state,
-        messages: [...state.messages, { role: "assistant", content: action.payload }],
+        messages: [
+          ...state.messages,
+          { role: "assistant", content: action.payload },
+        ],
       };
     case "SET_INPUT":
       return {
@@ -91,7 +97,9 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ messages: [...state.messages, { role: "user", content: state.input }] }),
+        body: JSON.stringify({
+          messages: [...state.messages, { role: "user", content: state.input }],
+        }),
       });
 
       const data = await res.json();
@@ -105,13 +113,15 @@ export default function Home() {
 
       const intervalId = setInterval(() => {
         if (index < len) {
-          dispatch({ type: "UPDATE_TXT", payload: assistantMessageContent[index] });
+          dispatch({
+            type: "UPDATE_TXT",
+            payload: assistantMessageContent[index],
+          });
           index++;
         } else {
           clearInterval(intervalId);
         }
       }, 20);
-
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -121,20 +131,30 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="relative h-screen ">
+      <div className="absolute inset-0 -z-20 bg-white bg-[radial-gradient(#000_1px,transparent_1px)]   dark:bg-[radial-gradient(#7776B3_1px,#00091d_1px)] bg-[size:20px_20px]" />
+
+      <ThemeTabs />
       {/* <Image
-        src="/images/bg_img.jpg"
+<div class="relative "></div></div>
+<div class="absolute inset-0 -z-10 h-full w-full[background-size:16px_16px]"></div>
+
+src="/images/bg_img.jpg"
+
         layout="fill"
+        <div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-0 right-0 top-0 "></div></div>
         alt="img"
         objectFit="cover"
       /> */}
-      <div className="absolute md:px-4 w-full h-screen flex flex-col gap-5 items-center bottom-5 bg-slate-900">
-        <h1 className="text-xl md:text-5xl px-2 font-bold text-white font-serif mt-10">
-          Aswin K O&rsquo;s Portfolio
+      <div className="container max-w-screen-lg p-2 lg:p-0 mx-auto h-ful w-full flex flex-col gap-5 items-center">
+        <h1 className="text-xl md:text-5xl px-2 font-bold text-black dark:text-white font-serif mt-10">
+          Chat with <span className="text-[#F9D689]">Aswin K O</span>
         </h1>
-        <section className="w-full flex-1 flex-col overflow-y-scroll overflow-x-hidden md:px-64 rounded-sm">
+        <section className="w-full flex-1 flex-col bg-white overflow-y-scroll overflow-x-hidden no-scrollbar border border-black dark:border-slate-700 p-1 md:p-4 rounded-xl shadow-2xl inset-0 dark:bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
           {state.messages.length === 0 ? (
-            <p className="text-center text-xl">Ask me anything?</p>
+            <p className="text-center text-xl text-black dark:text-white">
+              Ask me anything?
+            </p>
           ) : (
             <>
               {state.messages.map((msg, index) => (
@@ -142,61 +162,53 @@ export default function Home() {
                   key={`message-${index}`}
                   className={`rounded-3xl ${
                     msg.role === "user"
-                      ? "rounded-br-none bg-gray-600 ml-auto md:w-[60%]"
-                      : "rounded-bl-none bg-teal-900 md:w-full"
-                  } m-2 p-2 px-4 w-[70%]  mt-4 text-gray-200`}
+                      ? " bg-gray-600 ml-auto md:w-fit"
+                      : " bg-[#5A639C] md:w-[90%]"
+                  } m-2 p-2 px-4 w-[70%]  mt-4 dark:text-gray-200`}
                 >
                   <strong
-                    className={`${
-                      msg.role === "user" ? "text-white" : "text-red-500"
+                    className={`md:text-lg ${
+                      msg.role === "user" ? "dark:text-white" : "text-[#FFDB5C]"
                     }`}
                   >
                     {msg.role === "user" ? `You: ` : "Aswin: "}
                   </strong>
-                  <span className="text-xs md:text-base">
-                    {msg.content}
-                  </span>
+                  <span className="text-xs md:text-base">{msg.content}</span>
                 </div>
               ))}
-              {state.isLoading && <span className="ml-auto">Thinking...🤓</span>}
+              {state.isLoading && (
+                <span className="ml-auto text-black dark:text-white">
+                  Thinking...🤓
+                </span>
+              )}
             </>
           )}
         </section>
 
-        <form
-          action=""
-          className="md:w-full flex gap-1"
-          onSubmit={handleSubmit}
-        >
+        <form action="" className="w-full flex gap-1" onSubmit={handleSubmit}>
           <input
             onChange={handleInputChange}
             value={state.input}
-            className="p-2 md:py-3 md:px-5 flex-1 rounded-full text-black md:text-xl border-2 border-gray-50 focus:outline-none focus:border-blue-500"
+            className="p-2 md:py-3 md:px-5 flex-1 rounded-full text-black dark:text-white md:text-xl border-2 border-gray-400 dark:border-gray-50 focus:outline-none dark:focus:border-white dark:bg-zinc-950"
             type="text"
             placeholder="write your name ?"
           />
           <button
             type="submit"
             disabled={state.isLoading}
-            className="bg-blue-800 hover:bg-blue-600 text-white rounded-full text-xs px-3 md:text-lg md:px-5 cursor-pointer focus:outline-none disabled:bg-blue-400"
+            className="bg-[#7776B3] hover:bg-[#5A639C] dark:text-white rounded-full text-xs px-3 md:text-lg md:px-5 cursor-pointer focus:outline-none disabled:bg-blue-400"
           >
-            Submit
+            Ask me
           </button>
         </form>
       </div>
+      <footer className="text-sm w-full absolute bottom-0 text-center text-zinc-950 font-bold dark:text-white">
+        © 2024 <span className="text-zinc-950 dark:text-gray-400">Aswin K O</span>{" "}
+        All Rights Reserved.
+      </footer>
     </main>
   );
 }
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
