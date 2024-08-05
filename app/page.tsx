@@ -131,22 +131,21 @@ export default function Home() {
   };
 
   return (
-    <main className="relative h-screen ">
-      <div className="absolute inset-0 -z-20 bg-white bg-[radial-gradient(#000_1px,transparent_1px)]   dark:bg-[radial-gradient(#7776B3_1px,#00091d_1px)] bg-[size:20px_20px]" />
-
+    <main className="relative">
+      <div className="fixed inset-0 -z-20 bg-white bg-[radial-gradient(#000_1px,transparent_1px)] dark:bg-[radial-gradient(#7776B3_1px,#00091d_1px)] bg-[size:20px_20px]" />
       <ThemeTabs />
       {/* <Image
-<div class="relative "></div></div>
-<div class="absolute inset-0 -z-10 h-full w-full[background-size:16px_16px]"></div>
+        <div class="relative "></div></div>
+        <div class="absolute inset-0 -z-10 h-full w-full[background-size:16px_16px]"></div>
 
-src="/images/bg_img.jpg"
+        src="/images/bg_img.jpg"
 
-        layout="fill"
-        <div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-0 right-0 top-0 "></div></div>
-        alt="img"
-        objectFit="cover"
-      /> */}
-      <div className="container max-w-screen-lg p-2 lg:p-0 mx-auto h-ful w-full flex flex-col gap-5 items-center">
+          layout="fill"
+          <div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-0 right-0 top-0 "></div></div>
+          alt="img"
+          objectFit="cover"
+        /> */}
+      <div className="container max-w-screen-lg p-2 lg:p-0 mx-auto w-full flex flex-col gap-5 items-center">
         <h1 className="text-xl md:text-5xl px-2 font-bold text-black dark:text-white font-serif mt-10">
           Chat with <span className="text-[#F9D689]">Aswin K O</span>
         </h1>
@@ -203,8 +202,9 @@ src="/images/bg_img.jpg"
         </form>
       </div>
       <footer className="pt-4 text-sm flex items-center justify-center text-zinc-950 font-bold dark:text-white">
-        © 2024 <span className="text-zinc-950 dark:text-gray-400">Aswin K O</span>{" "}
-        All Rights Reserved.
+        © 2024{" "}
+        <span className="text-zinc-950 dark:text-gray-400">Aswin K O</span> All
+        Rights Reserved.
       </footer>
     </main>
   );

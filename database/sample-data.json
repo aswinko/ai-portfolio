@@ -11,17 +11,17 @@
     },
     {
         "_id": 3,
-        "info": "my Instagram account", 
-        "description": "my instagram account id is @__thephantom_"
+        "info": "Instagram account", 
+        "description": "instagram account id is @__thephantom_"
     },
     {
         "_id": 4,
-        "info": "my Linkedin", 
-        "description": "my linkedin account id is @aswinko"
+        "info": "Linkedin account", 
+        "description": "linkedin account id is @aswinko"
     },
     {
         "_id": 5,
-        "info": "my Facebook", 
+        "info": "Facebook account", 
         "description": ""
     },
     {
@@ -32,7 +32,7 @@
     {
         "_id": 7,
         "info": "Age", 
-        "description": "my age is 22"
+        "description": "22 years old"
     },
     {
         "_id": 8,
@@ -62,6 +62,6 @@
     {
         "_id": 13,
         "info": "Social media",
-        "description": "My social media accounts are linkedin, facebook, instagram"
+        "description": "social media accounts are linkedin, facebook, instagram"
     }
 ]
